@@ -10,7 +10,7 @@
   
   <script>    
     
-    var options;
+    var options = True;
     
     if(navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
 		try {
@@ -20,6 +20,7 @@
 				if (device.kind === 'videoinput') {
 				  if(device.label.toLowerCase().search("back") >-1)
 					options={'deviceId': {'exact':device.deviceId}, 'facingMode':'environment'} ;
+					console.log('Printing Options');
 					console.log(options);
 				}
 			  });
