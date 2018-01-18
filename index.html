@@ -11,38 +11,26 @@
 	
   <script>    
     
-    var options = true;
-    
-    if(navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-		try {
-			navigator.mediaDevices.enumerateDevices()
-			.then(function(devices) {
-			  devices.forEach(function(device) {
-				if (device.kind === 'videoinput') {				  
-					options = {'deviceId': {'exact':device.deviceId}, 'facingMode':'environment'} ;
-					console.log('Printing Options');
-					console.log(options);
-					console.log(device.deviceId);
-					console.log('alright');
-					
-				}
-			  });
+   	navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
 
-			  //setwebcam2(options);
-
-			});
-		}
-		catch(e) {
-			console.log(e);
-		}
+	if (navigator.getUserMedia) {
+	   navigator.getUserMedia({ audio: true, video: { width: 1280, height: 720 } },
+	      function(stream) {
+		 var video = document.querySelector('video');
+		 video.srcObject = stream;
+		 video.onloadedmetadata = function(e) {
+		   video.play();
+		 };
+	      },
+	      function(err) {
+		 console.log("The following error occurred: " + err.name);
+	      }
+	   );
+	} else {
+	   console.log("getUserMedia not supported");
 	}
-	else {
-		console.log("no navigator.mediaDevices.enumerateDevices" );
-
-		//setwebcam2(options);
-
-	}
-	
     
   </script>
   
