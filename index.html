@@ -20,7 +20,7 @@
 			  devices.forEach(function(device) {
 				if (device.kind === 'videoinput') {
 				  if(device.label.toLowerCase().search("back") >-1)
-					options={'deviceId': {'exact':device.deviceId}, 'facingMode':'environment'} ;
+					options = {'deviceId': {'exact':device.deviceId}, 'facingMode':'environment'} ;
 					console.log('Printing Options');
 					console.log(options);
 					console.log(device.deviceId);
