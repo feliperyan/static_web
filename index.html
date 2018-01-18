@@ -18,8 +18,7 @@
 			navigator.mediaDevices.enumerateDevices()
 			.then(function(devices) {
 			  devices.forEach(function(device) {
-				if (device.kind === 'videoinput') {
-				  if(device.label.toLowerCase().search("back") >-1)
+				if (device.kind === 'videoinput') {				  
 					options = {'deviceId': {'exact':device.deviceId}, 'facingMode':'environment'} ;
 					console.log('Printing Options');
 					console.log(options);
